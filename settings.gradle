@@ -1,2 +1,4 @@
 include ':app'
+include ':library'
+project(':library').projectDir = new File('../Library')// 指定ModuleBase的路径
 rootProject.name='Fun'
