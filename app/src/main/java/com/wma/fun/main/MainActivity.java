@@ -74,8 +74,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         });
     }
 
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
