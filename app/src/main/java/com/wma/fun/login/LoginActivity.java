@@ -1,13 +1,18 @@
 package com.wma.fun.login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.wma.fun.R;
 import com.wma.fun.databinding.ActivityLoginBinding;
+import com.wma.fun.main.MainActivity;
 import com.wma.library.base.BaseActivity;
+import com.wma.library.log.Logger;
+import com.wma.library.utils.ScreenUtils;
 
 /**
  * create by wma
@@ -27,7 +32,13 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Override
     public void init() {
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        },1000);
     }
 
     @Override

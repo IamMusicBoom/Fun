@@ -1,9 +1,10 @@
 package com.wma.fun.main;
 
+import android.graphics.Color;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,26 +19,24 @@ import com.wma.library.base.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> implements View.OnClickListener {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private MainPagerAdapter mAdapter;
     private List<Fragment> mFragments;
-    @Override
-    public void onClick(View v) {
-
-    }
 
     @Override
     public String getTitleStr() {
         return null;
     }
 
-    @Override
     public void init() {
+        // note : 沉浸状态栏，使DrawerLayout有覆盖状态栏的效果，状态栏必须是透明色，只能在子类布局在无title的情况下将布局延伸到状态栏，并且添加一个假的状态栏
+        immerseStatus(true, false, Color.TRANSPARENT, 0);
+        immerseStatusWithDrawerLayout(mBinding.drawerLayout, ContextCompat.getColor(this, R.color.colorAccent), 0);
         mFragments = new ArrayList<>();
         mFragments.add(new HomeFragment());
         mFragments.add(new SocialFragment());
         mFragments.add(new TaskFragment());
-        mAdapter = new MainPagerAdapter(getSupportFragmentManager(),mFragments);
+        mAdapter = new MainPagerAdapter(getSupportFragmentManager(), mFragments);
         mBinding.viewPager.setAdapter(mAdapter);
         mBinding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -59,15 +58,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
-                switch (itemId){
+                switch (itemId) {
                     case R.id.menu_home:
-                        mBinding.viewPager.setCurrentItem(0,true);
+                        mBinding.viewPager.setCurrentItem(0, true);
                         break;
                     case R.id.menu_social:
-                        mBinding.viewPager.setCurrentItem(1,true);
+                        mBinding.viewPager.setCurrentItem(1, true);
                         break;
                     case R.id.menu_task:
-                        mBinding.viewPager.setCurrentItem(2,true);
+                        mBinding.viewPager.setCurrentItem(2, true);
                         break;
                 }
                 return false;

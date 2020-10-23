@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".login.LoginActivity"
+            android:theme="@style/LauncherTheme">
+
+        </activity>
     </application>
 
 </manifest>
