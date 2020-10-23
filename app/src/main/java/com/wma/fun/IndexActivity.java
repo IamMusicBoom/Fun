@@ -1,5 +1,7 @@
 package com.wma.fun;
 
+import android.os.Bundle;
+
 import com.wma.library.base.BasePermissionActivity;
 
 /**
@@ -20,13 +22,14 @@ public class IndexActivity extends BasePermissionActivity {
     }
 
 
+
     @Override
     public String getTitleStr() {
         return null;
     }
 
     @Override
-    public void init() {
+    public void init(Bundle savedInstanceState) {
 
     }
 }

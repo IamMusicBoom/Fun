@@ -1,6 +1,7 @@
 package com.wma.fun.main;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,8 @@ import com.wma.fun.home.HomeFragment;
 import com.wma.fun.social.SocialFragment;
 import com.wma.fun.task.TaskFragment;
 import com.wma.library.base.BaseActivity;
+import com.wma.library.log.Logger;
+import com.wma.library.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +31,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         return null;
     }
 
-    public void init() {
+    public void init(Bundle savedInstanceState) {
         // note : 沉浸状态栏，使DrawerLayout有覆盖状态栏的效果，状态栏必须是透明色，只能在子类布局在无title的情况下将布局延伸到状态栏，并且添加一个假的状态栏
         immerseStatus(true, false, Color.TRANSPARENT, 0);
         immerseStatusWithDrawerLayout(mBinding.drawerLayout, ContextCompat.getColor(this, R.color.colorAccent), 0);
@@ -72,13 +75,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 return false;
             }
         });
+        
     }
+
 
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
     }
+
 
 
     @Override

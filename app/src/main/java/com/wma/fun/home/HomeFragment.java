@@ -1,19 +1,18 @@
 package com.wma.fun.home;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
+import android.os.Bundle;
+
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentHomeBinding;
 import com.wma.library.base.BaseFragment;
+import com.wma.library.base.BaseLoadFragment;
 import com.wma.library.log.Logger;
 
 /**
  * create by wma
  * on 2020/10/22 0022
  */
-public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
+public class HomeFragment extends BaseLoadFragment<FragmentHomeBinding> {
 
 
 
@@ -24,15 +23,16 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         return null;
     }
 
+
     @Override
-    public void init() {
-
-
-
+    protected void loadData() {
+        Logger.d(TAG, "loadData: ");
+        new HomeModule().loadConstellation(this);
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
     }
+
 }

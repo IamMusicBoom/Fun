@@ -1,5 +1,7 @@
 package com.wma.fun.task;
 
+import android.os.Bundle;
+
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentHomeBinding;
 import com.wma.library.base.BaseFragment;
@@ -15,7 +17,7 @@ public class TaskFragment extends BaseFragment<FragmentHomeBinding> {
     }
 
     @Override
-    public void init() {
+    public void init(Bundle savedInstanceState) {
 
     }
 
@@ -23,4 +25,5 @@ public class TaskFragment extends BaseFragment<FragmentHomeBinding> {
     public int getLayoutId() {
         return R.layout.fragment_task;
     }
+
 }

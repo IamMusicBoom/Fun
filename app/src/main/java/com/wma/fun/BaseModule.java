@@ -1,38 +1,27 @@
 package com.wma.fun;
 
+import com.wma.library.utils.HttpUtils;
+
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 
 /**
  * create by wma
  * on 2020/10/14 0014
  */
 public class BaseModule {
-    private String msg;
-    private int code;
-    private JSONObject data;
 
-    public String getMsg() {
-        return msg;
+    public HttpUtils mHttpUtils;
 
+    public Callback.Cancelable mCancelable;
+
+    public BaseModule() {
+        mHttpUtils = new HttpUtils();
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public JSONObject getData() {
-        return data;
-    }
-
-    public void setData(JSONObject data) {
-        this.data = data;
+    public void cancelLoad(){
+        if(mCancelable != null){
+            mCancelable.cancel();
+        }
     }
 }
