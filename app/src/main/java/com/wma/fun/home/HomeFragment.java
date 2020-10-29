@@ -2,20 +2,25 @@ package com.wma.fun.home;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentHomeBinding;
+import com.wma.fun.home.cons.TodayConsFragment;
+import com.wma.fun.home.cons.module.ConsModule;
 import com.wma.library.base.BaseFragment;
-import com.wma.library.base.BaseLoadFragment;
-import com.wma.library.log.Logger;
+import com.wma.library.base.BaseFragmentPagerAdapter;
+import com.wma.library.utils.ConsUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * create by wma
  * on 2020/10/22 0022
  */
-public class HomeFragment extends BaseLoadFragment<FragmentHomeBinding> {
-
-
-
+public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements TodayConsFragment.OnBackgroundChange {
 
 
     @Override
@@ -23,16 +28,31 @@ public class HomeFragment extends BaseLoadFragment<FragmentHomeBinding> {
         return null;
     }
 
-
     @Override
-    protected void loadData() {
-        Logger.d(TAG, "loadData: ");
-        new HomeModule().loadConstellation(this);
+    public void init(@Nullable Bundle savedInstanceState) {
+
+        initCons();
+
     }
+
+    /**
+     * 初始化星座
+     */
+    private void initCons() {
+        List<Fragment> mConsFragments = new ArrayList<>();
+        mConsFragments.add(new TodayConsFragment(this, ConsModule.TYPE_TODAY));
+        mConsFragments.add(new TodayConsFragment(this, ConsModule.TYPE_TOMORROW));
+        mBinding.consPager.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), mConsFragments));
+    }
+
 
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
     }
 
+    @Override
+    public void curCons(String cons) {
+        mBinding.setCons(cons);
+    }
 }

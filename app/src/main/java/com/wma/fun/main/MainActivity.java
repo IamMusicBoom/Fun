@@ -16,8 +16,6 @@ import com.wma.fun.home.HomeFragment;
 import com.wma.fun.social.SocialFragment;
 import com.wma.fun.task.TaskFragment;
 import com.wma.library.base.BaseActivity;
-import com.wma.library.log.Logger;
-import com.wma.library.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
