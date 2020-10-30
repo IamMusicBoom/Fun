@@ -153,13 +153,18 @@ public class ProgressView extends View {
         mStartY = mHeight / 2;
         mEndX = mWidth - getPaddingEnd();
         mEndY = mHeight / 2;
-        if (mProgress == 0) {
-            mProgress = mStartX;
-        }
+
 
 
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        if (mProgress == 0) {
+            mProgress = mStartX;
+        }
+    }
 
     public void setMax(float max) {
         this.mMax = max;

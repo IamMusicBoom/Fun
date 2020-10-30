@@ -6,4 +6,7 @@
 
     <color name="colorProgressStart">#F55A18</color>
     <color name="colorProgressEnd">#0AFF02</color>
+
+    <color name="colorHot">#FF0A0A</color>
+    <color name="colorCold">#0059F3</color>
 </resources>

@@ -25,7 +25,17 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/weather_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@android:color/black"/>
+
+<!--            <com.wma.fun.home.weather.TemperatureView-->
+<!--                android:id="@+id/temperature_view"-->
+<!--                android:layout_width="10dp"-->
+<!--                android:layout_marginEnd="5dp"-->
+<!--                android:padding="2dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"/>-->
 
         </androidx.cardview.widget.CardView>
 

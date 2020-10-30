@@ -52,7 +52,7 @@ public class TodayModule extends ConsModule {
     private String summary;
     private String all;
     private String resultcode;
-    private int error_code;
+
 
     public int getDate() {
         return date;
@@ -158,13 +158,7 @@ public class TodayModule extends ConsModule {
         this.resultcode = resultcode;
     }
 
-    public int getError_code() {
-        return error_code;
-    }
 
-    public void setError_code(int error_code) {
-        this.error_code = error_code;
-    }
 
     @BindingAdapter("progress")
     public static void setProgress(ProgressView view, String progress) {
