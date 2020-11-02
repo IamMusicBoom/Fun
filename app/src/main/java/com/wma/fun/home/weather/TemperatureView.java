@@ -266,48 +266,54 @@ public class TemperatureView extends View {
         mMinTemp = min;
         generateCalibration(max, min, temperature);
         Calibration curCalibration = getCalibration(temperature);
-        float start = mCurY;
-        ValueAnimator anim = ValueAnimator.ofFloat(start, curCalibration.getStartP().y);
-        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                mCurY = animatedValue;
-                postInvalidate();
-            }
-        });
-        anim.setDuration(1000);
-        anim.start();
+        if(curCalibration != null){
+            float start = mCurY;
+            ValueAnimator anim = ValueAnimator.ofFloat(start, curCalibration.getStartP().y);
+            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float animatedValue = (float) animation.getAnimatedValue();
+                    mCurY = animatedValue;
+                    postInvalidate();
+                }
+            });
+            anim.setDuration(1000);
+            anim.start();
+        }
 
 
         Calibration calibration0 = getCalibration(0);
         Calibration maxCalibration = getCalibration(max);
-        ValueAnimator animMax = ValueAnimator.ofFloat(calibration0.getEndP().y, maxCalibration.getEndP().y);
-        animMax.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                mMaxY = animatedValue;
-                postInvalidate();
-            }
-        });
-        animMax.setDuration(1000);
-        animMax.start();
+        if(maxCalibration != null){
+            ValueAnimator animMax = ValueAnimator.ofFloat(calibration0.getEndP().y, maxCalibration.getEndP().y);
+            animMax.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float animatedValue = (float) animation.getAnimatedValue();
+                    mMaxY = animatedValue;
+                    postInvalidate();
+                }
+            });
+            animMax.setDuration(1000);
+            animMax.start();
+        }
 
 
         Calibration minCalibration = getCalibration(min);
-        ValueAnimator animMin = ValueAnimator.ofFloat(calibration0.getEndP().y, minCalibration.getEndP().y);
-        Logger.d(TAG, "setTemperature: " + minCalibration.getEndP().y);
-        animMin.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                mMinY = animatedValue ;
-                postInvalidate();
-            }
-        });
-        animMin.setDuration(1000);
-        animMin.start();
+        if(minCalibration != null){
+            ValueAnimator animMin = ValueAnimator.ofFloat(calibration0.getEndP().y, minCalibration.getEndP().y);
+            Logger.d(TAG, "setTemperature: " + minCalibration.getEndP().y);
+            animMin.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float animatedValue = (float) animation.getAnimatedValue();
+                    mMinY = animatedValue ;
+                    postInvalidate();
+                }
+            });
+            animMin.setDuration(1000);
+            animMin.start();
+        }
     }
 
 

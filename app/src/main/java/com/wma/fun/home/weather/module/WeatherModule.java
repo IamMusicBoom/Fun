@@ -1,7 +1,18 @@
 package com.wma.fun.home.weather.module;
 
-import com.wma.library.base.BaseModule;
+import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.wma.fun.R;
+import com.wma.fun.home.weather.TemperatureView;
+import com.wma.fun.home.weather.WindView;
+import com.wma.library.base.BaseModule;
+import com.wma.library.log.Logger;
+import com.wma.library.utils.FileUtils;
+
+import java.io.File;
 import java.util.List;
 
 /**
@@ -9,7 +20,6 @@ import java.util.List;
  * on 2020/10/30 0030
  */
 public class WeatherModule extends WeatherNetModule {
-
 
 
     /**
@@ -204,11 +214,24 @@ public class WeatherModule extends WeatherNetModule {
         }
     }
 
-//    795896001e17442acb2ca48ae1ea3167
 
+    @BindingAdapter("temperature")
+    public static void temperature(TemperatureView view, String temperature) {
+        view.setTemperature(-1000, -1000, Float.valueOf(temperature));
+    }
 
+    @BindingAdapter({"windName", "windPower"})
+    public static void wind(WindView view, String windName, String windPower) {
+        view.setCurWindAndPower(windName, windPower);
+    }
 
-
-
-
+    @BindingAdapter("weatherImg")
+    public static void weatherImg(ImageView img, String weatherInfo) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ic_w_");
+        sb.append(weatherInfo);
+        sb.append(".png");
+        String assetsFilePath = new FileUtils(img.getContext()).getAssetsFilePath(sb.toString());
+        Glide.with(img.getContext()).load(assetsFilePath).placeholder(R.mipmap.ic_launcher).into(img);
+    }
 }

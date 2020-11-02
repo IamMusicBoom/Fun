@@ -34,7 +34,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements T
     public void init(@Nullable Bundle savedInstanceState) {
         initWeather();
         initCons();
-
     }
 
     /**

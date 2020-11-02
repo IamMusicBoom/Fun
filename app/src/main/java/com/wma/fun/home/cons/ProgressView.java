@@ -22,6 +22,7 @@ import android.view.animation.PathInterpolator;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.BindingAdapter;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
@@ -55,6 +56,8 @@ public class ProgressView extends View {
     private float mProgress;
 
     private float mMax = 100f;
+
+    private boolean isLandscape;// 是否为横放
 
 
     public ProgressView(Context context) {
@@ -112,7 +115,12 @@ public class ProgressView extends View {
      * @param canvas
      */
     private void drawProgress(Canvas canvas) {
-        mPgRect.set(mBgRect.left, mBgRect.top, mProgress, mBgRect.bottom);
+        if (isLandscape) {
+            mPgRect.set(mBgRect.left, mBgRect.top, mProgress, mBgRect.bottom);
+        } else {
+            mPgRect.set(mBgRect.left, mProgress, mBgRect.right, mBgRect.bottom);
+
+        }
         canvas.drawRoundRect(mPgRect, 50, 50, mPaint);
     }
 
@@ -143,17 +151,26 @@ public class ProgressView extends View {
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
         if (mWidth > mHeight) { // 横着摆放，progressWidth 应该等于控件高度
             mHeight = mProgressWith;
+            isLandscape = true;
         } else {// 竖着摆放，progressWidth 应该等于控件宽度
             mWidth = mProgressWith;
+            isLandscape = false;
         }
         setMeasuredDimension(mWidth, mHeight);
 
         mBgRect.set(getPaddingStart(), getPaddingTop(), mWidth - getPaddingEnd(), mHeight - getPaddingBottom());
-        mStartX = getPaddingStart();
-        mStartY = mHeight / 2;
-        mEndX = mWidth - getPaddingEnd();
-        mEndY = mHeight / 2;
+        if (isLandscape) {
+            mStartX = getPaddingStart();
+            mStartY = mHeight / 2;
+            mEndX = mWidth - getPaddingEnd();
+            mEndY = mHeight / 2;
+        } else {
+            mStartX = mWidth / 2;
+            mStartY = mHeight - getPaddingBottom();
+            mEndX = mWidth / 2;
+            mEndY = getPaddingTop();
 
+        }
 
 
     }
@@ -162,7 +179,7 @@ public class ProgressView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (mProgress == 0) {
-            mProgress = mStartX;
+            mProgress = isLandscape ? mStartX : mStartY;
         }
     }
 
@@ -176,13 +193,30 @@ public class ProgressView extends View {
     }
 
     public void setProgress(float progress) {
-        ValueAnimator anim = ValueAnimator.ofFloat(mStartX, progress);
+        ValueAnimator anim = null;
+        float start;
+        float end;
+        if (isLandscape) {
+            start = mStartX;
+            end = progress;
+        } else {
+            start = mStartY - mEndY;
+            end = mHeight - progress/mMax*(mStartY-mEndY);
+        }
+        anim = ValueAnimator.ofFloat(start, end);
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                mProgress = ((float) animation.getAnimatedValue()) / mMax * (mEndX - mStartX);
-                if(mProgress < mStartX){
-                    mProgress = mStartX;
+                if (isLandscape) {
+                    mProgress = ((float) animation.getAnimatedValue()) / mMax * (mEndX - mStartX);
+                    if (mProgress < mStartX) {
+                        mProgress = mStartX;
+                    }
+                } else {
+                    mProgress = ((float) animation.getAnimatedValue());
+                    if (mProgress > mStartY) {
+                        mProgress = mStartY;
+                    }
                 }
                 postInvalidate();
             }
@@ -191,6 +225,12 @@ public class ProgressView extends View {
         anim.setDuration(1000);
         anim.start();
 
+    }
+
+
+    @BindingAdapter("progress")
+    public static void progress(ProgressView view, String progress) {
+        view.setProgress(Float.valueOf(progress));
     }
 
 }

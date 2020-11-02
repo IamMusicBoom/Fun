@@ -160,10 +160,7 @@ public class TodayModule extends ConsModule {
 
 
 
-    @BindingAdapter("progress")
-    public static void setProgress(ProgressView view, String progress) {
-        view.setProgress(Float.valueOf(progress));
-    }
+
 
     @BindingAdapter("backgroundRes")
     public static void setBackgroundRes(View view,String cons){

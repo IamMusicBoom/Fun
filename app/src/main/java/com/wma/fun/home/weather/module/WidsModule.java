@@ -14,6 +14,7 @@ public class WidsModule extends WeatherNetModule {
 
     private String wid;
     private String weather;
+    private int weatherImg;
 
     public String getWid() {
         return wid;
@@ -29,5 +30,13 @@ public class WidsModule extends WeatherNetModule {
 
     public void setWeather(String weather) {
         this.weather = weather;
+    }
+
+    public int getWeatherImg() {
+        return weatherImg;
+    }
+
+    public void setWeatherImg(int weatherImg) {
+        this.weatherImg = weatherImg;
     }
 }
