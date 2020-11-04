@@ -10,5 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.wma.fun.home.weather.FutureView
+            android:id="@+id/future_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+           />
+
     </LinearLayout>
 </layout>

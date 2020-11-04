@@ -1,22 +1,21 @@
 package com.wma.fun.home.weather;
 
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
+
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.bumptech.glide.Glide;
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentWeatherBinding;
+import com.wma.fun.home.HomeFragment;
 import com.wma.fun.home.weather.module.WeatherModule;
 import com.wma.fun.home.weather.module.WeatherNetModule;
 import com.wma.fun.utils.LocateUtils;
+import com.wma.library.base.BaseFragmentPagerAdapter;
 import com.wma.library.base.BaseLazyLoadFragment;
 import com.wma.library.log.Logger;
-import com.wma.library.utils.FileUtils;
 
 /**
  * create by wma
@@ -91,6 +90,7 @@ public class WeatherFragment extends BaseLazyLoadFragment<WeatherModule, Fragmen
     public void handleBySuccess(WeatherModule result) {
         super.handleBySuccess(result);
         mBinding.setWeatherModule(result);
+        ((FutureFragment) ((BaseFragmentPagerAdapter) ((HomeFragment) getParentFragment()).mBinding.weatherPager.getAdapter()).getItem(1)).setWeatherModule(result);
     }
 
     @Override

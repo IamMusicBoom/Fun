@@ -5,12 +5,15 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentHomeBinding;
 import com.wma.fun.home.cons.TodayConsFragment;
 import com.wma.fun.home.cons.module.ConsModule;
+import com.wma.fun.home.weather.FutureFragment;
 import com.wma.fun.home.weather.WeatherFragment;
+import com.wma.fun.home.weather.module.WeatherModule;
 import com.wma.library.base.BaseFragment;
 import com.wma.library.base.BaseFragmentPagerAdapter;
 import com.wma.library.utils.ConsUtils;
@@ -42,6 +45,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements T
     private void initWeather() {
         List<Fragment> mWeatherFragments = new ArrayList<>();
         mWeatherFragments.add(new WeatherFragment());
+        mWeatherFragments.add(new FutureFragment());
         mBinding.weatherPager.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), mWeatherFragments));
     }
 
@@ -65,4 +69,5 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements T
     public void curCons(String cons) {
         mBinding.setCons(cons);
     }
+
 }

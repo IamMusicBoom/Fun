@@ -29,6 +29,13 @@ public class Calibration {
         this.numberStr = String.valueOf(number);
     }
 
+    public Calibration(PointF startP, PointF endP, int strokeWidth, String text) {
+        this.startP = startP;
+        this.endP = endP;
+        this.strokeWidth = strokeWidth;
+        this.numberStr = text;
+    }
+
     public int getNumber() {
         return number;
     }

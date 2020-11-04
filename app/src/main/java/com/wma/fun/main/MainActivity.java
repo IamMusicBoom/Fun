@@ -39,6 +39,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         mFragments.add(new TaskFragment());
         mAdapter = new MainPagerAdapter(getSupportFragmentManager(), mFragments);
         mBinding.viewPager.setAdapter(mAdapter);
+        mBinding.viewPager.setOffscreenPageLimit(3);
         mBinding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
