@@ -1,16 +1,16 @@
 package com.wma.fun.home.news;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.wma.fun.R;
 import com.wma.fun.databinding.ActivityNewsListBinding;
 import com.wma.library.base.BaseListActivity;
 import com.wma.library.base.BaseRecyclerAdapter;
+import com.wma.library.base.BaseWebViewActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,20 +20,41 @@ import java.util.List;
 public class NewsListActivity extends BaseListActivity<NewsModule, ActivityNewsListBinding> {
 
     @Override
-    public BaseRecyclerAdapter getAdapter() {
-        return new NewsListAdapter(mList, this);
+    protected void loadData() {
+        new NewsModule().loadNews(this, "top");
+        List<NewsModule> list = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            NewsModule newsModule = new NewsModule();
+            newsModule.setTitle("标题" + i);
+            list.add(newsModule);
+        }
+        addList(list);
     }
 
     @Override
-    public void loadData() {
-        new NewsModule().loadNews(this,"top");
+    protected boolean enableLoadMore() {
+        return false;
     }
-
 
     @Override
     public String getTitleStr() {
-        return "列表";
+        return null;
     }
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+        super.init(savedInstanceState);
+        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<NewsModule>() {
+            @Override
+            public void onItemClickListener(int position, NewsModule data) {
+                Intent intent = new Intent(NewsListActivity.this, NewsDetailActivity.class);
+                intent.putExtra(BaseWebViewActivity.KEY_TITLE, data.getTitle());
+                intent.putExtra(BaseWebViewActivity.KEY_URL, data.getUrl());
+                startActivity(intent);
+            }
+        });
+    }
+
 
     @Override
     public int getLayoutId() {
@@ -41,8 +62,8 @@ public class NewsListActivity extends BaseListActivity<NewsModule, ActivityNewsL
     }
 
     @Override
-    protected View getRefreshView() {
-        return mBinding.layoutRefresh.getRoot();
+    public BaseRecyclerAdapter getAdapter() {
+        return new NewsListAdapter(mList, this);
     }
 
     @Override
@@ -50,4 +71,5 @@ public class NewsListActivity extends BaseListActivity<NewsModule, ActivityNewsL
         super.handleBySuccess(result);
         addList(result);
     }
+
 }

@@ -8,6 +8,9 @@ import android.view.View;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.scwang.smart.refresh.header.BezierRadarHeader;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshHeader;
 import com.wma.fun.R;
 import com.wma.fun.data.UserSP;
 import com.wma.fun.databinding.FragmentNewsBinding;
@@ -32,16 +35,24 @@ public class NewsFragment extends BaseLoadFragment<NewsModule, FragmentNewsBindi
 
     BasePagerAdapter mAdapter;
 
-    @Override
-    protected boolean canRefresh() {
-        return true;
-    }
 
 
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         mViewList = new ArrayList<>();
+        autoRefresh();
+    }
+
+
+    @Override
+    protected boolean enableLoadMore() {
+        return false;
+    }
+
+    @Override
+    protected SmartRefreshLayout getSmartRefreshLayout() {
+        return mBinding.smartRefreshLayout;
     }
 
     @Override

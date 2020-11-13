@@ -19,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#99000000"
+            android:background="?android:attr/selectableItemBackground"
             android:paddingTop="5dp"
             android:paddingBottom="5dp">
 
@@ -31,7 +31,7 @@
                 android:layout_marginEnd="5dp"
                 android:gravity="center"
                 android:text='@{newsModule.title ?? "Title"}'
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text='@{newsModule.author_name ?? "From"}'
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@id/view_tv_news_title"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text='@{newsModule.date ?? "Time"}'
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/view_tv_news_title"
                 app:layout_constraintBottom_toBottomOf="parent"/>

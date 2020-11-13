@@ -1,13 +1,17 @@
 package com.wma.fun.home.weather;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentWeatherBinding;
 import com.wma.fun.home.HomeFragment;
+import com.wma.fun.home.news.NewsListActivity;
 import com.wma.fun.home.weather.module.WeatherModule;
 import com.wma.fun.home.weather.module.WeatherNetModule;
 import com.wma.fun.utils.LocateUtils;
@@ -22,16 +26,13 @@ import com.wma.library.log.Logger;
 public class WeatherFragment extends BaseLazyLoadFragment<WeatherModule, FragmentWeatherBinding> {
     private String mCurDistrict;
     private String mCurCity;
-    @Override
-    protected boolean canRefresh() {
-        return false;
-    }
 
 
     @Override
     public String getTitleStr() {
         return null;
     }
+
 
     @Override
     public int getLayoutId() {
@@ -46,6 +47,7 @@ public class WeatherFragment extends BaseLazyLoadFragment<WeatherModule, Fragmen
             new WeatherNetModule().loadWeather(this,mCurDistrict);
         }
     }
+
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -82,6 +84,22 @@ public class WeatherFragment extends BaseLazyLoadFragment<WeatherModule, Fragmen
 
             }
         },null);
+        mBinding.weatherImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), NewsListActivity.class));
+            }
+        });
+    }
+
+    @Override
+    protected boolean enableLoadMore() {
+        return false;
+    }
+
+    @Override
+    protected SmartRefreshLayout getSmartRefreshLayout() {
+        return mBinding.smartRefreshLayout;
     }
 
     @Override

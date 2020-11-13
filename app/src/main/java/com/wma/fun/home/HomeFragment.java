@@ -1,12 +1,12 @@
 package com.wma.fun.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.wma.fun.R;
@@ -14,12 +14,11 @@ import com.wma.fun.databinding.FragmentHomeBinding;
 import com.wma.fun.home.cons.TodayConsFragment;
 import com.wma.fun.home.cons.module.ConsModule;
 import com.wma.fun.home.news.NewsFragment;
+import com.wma.fun.home.news.NewsListActivity;
 import com.wma.fun.home.weather.FutureFragment;
 import com.wma.fun.home.weather.WeatherFragment;
-import com.wma.fun.home.weather.module.WeatherModule;
 import com.wma.library.base.BaseFragment;
 import com.wma.library.base.BaseFragmentPagerAdapter;
-import com.wma.library.utils.ConsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +37,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements T
 
     @Override
     public void init(@Nullable Bundle savedInstanceState) {
-//        initWeather();
-//        initCons();
+        initWeather();
+        initCons();
         initNews();
     }
 

@@ -6,6 +6,10 @@
     </data>
 
 
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/smart_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/news_pager"
         android:orientation="vertical"
@@ -13,4 +17,5 @@
         android:layout_height="match_parent">
 
     </androidx.viewpager.widget.ViewPager>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </layout>

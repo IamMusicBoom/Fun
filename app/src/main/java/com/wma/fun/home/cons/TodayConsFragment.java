@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.wma.fun.R;
 import com.wma.fun.data.UserSP;
 import com.wma.fun.databinding.FragmentTodayConsBinding;
@@ -53,8 +54,13 @@ public class TodayConsFragment extends BaseLazyLoadFragment<TodayModule, Fragmen
     }
 
     @Override
-    protected boolean canRefresh() {
+    protected boolean enableLoadMore() {
         return false;
+    }
+
+    @Override
+    protected SmartRefreshLayout getSmartRefreshLayout() {
+        return mBinding.smartRefreshLayout;
     }
 
     @Override
