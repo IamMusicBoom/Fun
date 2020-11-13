@@ -5,12 +5,15 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentHomeBinding;
 import com.wma.fun.home.cons.TodayConsFragment;
 import com.wma.fun.home.cons.module.ConsModule;
+import com.wma.fun.home.news.NewsFragment;
 import com.wma.fun.home.weather.FutureFragment;
 import com.wma.fun.home.weather.WeatherFragment;
 import com.wma.fun.home.weather.module.WeatherModule;
@@ -35,8 +38,20 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements T
 
     @Override
     public void init(@Nullable Bundle savedInstanceState) {
-        initWeather();
-        initCons();
+//        initWeather();
+//        initCons();
+        initNews();
+    }
+
+    /**
+     * 初始化新闻
+     */
+    private void initNews() {
+        NewsFragment newsFragment = new NewsFragment();
+        FragmentManager childFragmentManager = getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = childFragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.news_card_view, newsFragment, NewsFragment.class.getSimpleName());
+        fragmentTransaction.commit();
     }
 
     /**

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="newsModule"
+            type="com.wma.fun.home.news.NewsModule" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="8dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/view_tv_news_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:text='@{newsModule.title ?? "Title"}'
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/view_ll_news_picture"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintVertical_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingEnd="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/view_tv_news_title"
+                app:layout_constraintTop_toBottomOf="@id/view_tv_news_title"
+                app:layout_constraintBottom_toTopOf="@id/view_tv_news_from">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:showImage="@{newsModule.thumbnail_pic_s}"
+                    app:cardCornerRadius="8dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:showImage="@{newsModule.thumbnail_pic_s02}"
+                    app:cardCornerRadius="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:showImage="@{newsModule.thumbnail_pic_s03}"
+                    app:cardCornerRadius="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view_tv_news_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{newsModule.author_name ?? "From"}'
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/view_tv_news_title"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/view_tv_news_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{newsModule.date ?? "Time"}'
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/view_tv_news_title"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

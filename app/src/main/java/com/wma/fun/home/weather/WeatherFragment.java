@@ -3,8 +3,6 @@ package com.wma.fun.home.weather;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import androidx.fragment.app.FragmentStatePagerAdapter;
-
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.wma.fun.R;
@@ -45,7 +43,7 @@ public class WeatherFragment extends BaseLazyLoadFragment<WeatherModule, Fragmen
         super.loadLazyData();
         Logger.d(TAG, "loadLazyData: mCurDistrict = " + mCurDistrict);
         if(!TextUtils.isEmpty(mCurDistrict)){
-            new WeatherNetModule().getWeather(this,mCurDistrict);
+            new WeatherNetModule().loadWeather(this,mCurDistrict);
         }
     }
 
