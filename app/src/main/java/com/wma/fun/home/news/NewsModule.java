@@ -18,6 +18,7 @@ import com.wma.library.log.Logger;
 import org.xutils.common.Callback;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -25,6 +26,13 @@ import java.util.Map;
  * on 2020/11/4 0004
  */
 public class NewsModule extends BaseModule {
+    /**
+     * top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
+     */
+    public static String[] mName = {"头条", "社会", "国内", "国际", "娱乐", "体育", "军事", "科技", "财经", "时尚"};
+    public static String[] mValue = {"top", "shehui", "guonei", "guoji", "yule", "tiyu", "junshi", "keji", "caijing", "shishang"};
+
+
     private final String NEWS_URL = "http://v.juhe.cn/toutiao/index";
     /**
      * uniquekey : 5caf434be0c9165ce432dca9e74aa44a
