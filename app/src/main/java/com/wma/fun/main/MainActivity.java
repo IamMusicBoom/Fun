@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.wma.fun.R;
 import com.wma.fun.databinding.ActivityMainBinding;
 import com.wma.fun.home.HomeFragment;
+import com.wma.fun.home.anim.CommonTransformer;
 import com.wma.fun.social.SocialFragment;
 import com.wma.fun.task.TaskFragment;
 import com.wma.library.base.BaseActivity;
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         mFragments.add(new TaskFragment());
         mAdapter = new MainPagerAdapter(getSupportFragmentManager(), mFragments);
         mBinding.viewPager.setAdapter(mAdapter);
+        mBinding.viewPager.setPageTransformer(true,new CommonTransformer());
         mBinding.viewPager.setOffscreenPageLimit(3);
         mBinding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

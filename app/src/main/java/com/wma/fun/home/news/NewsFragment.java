@@ -16,6 +16,7 @@ import com.wma.fun.data.UserSP;
 import com.wma.fun.databinding.FragmentNewsBinding;
 import com.wma.fun.databinding.ViewNewsBinding;
 import com.wma.fun.home.HomeFragment;
+import com.wma.fun.home.anim.CommonTransformer;
 import com.wma.library.base.BaseFragmentPagerAdapter;
 import com.wma.library.base.BaseLoadFragment;
 import com.wma.library.base.BasePagerAdapter;
@@ -105,6 +106,7 @@ public class NewsFragment extends BaseLoadFragment<NewsModule, FragmentNewsBindi
 
             }
             mAdapter = new BasePagerAdapter(mViewList);
+            mBinding.newsPager.setPageTransformer(true,new CommonTransformer());
             mBinding.newsPager.setAdapter(mAdapter);
         }
 

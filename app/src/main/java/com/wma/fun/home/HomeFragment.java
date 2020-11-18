@@ -1,8 +1,6 @@
 package com.wma.fun.home;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -11,10 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.wma.fun.R;
 import com.wma.fun.databinding.FragmentHomeBinding;
+import com.wma.fun.home.anim.CommonTransformer;
 import com.wma.fun.home.cons.TodayConsFragment;
 import com.wma.fun.home.cons.module.ConsModule;
 import com.wma.fun.home.news.NewsFragment;
-import com.wma.fun.home.news.NewsListActivity;
 import com.wma.fun.home.weather.FutureFragment;
 import com.wma.fun.home.weather.WeatherFragment;
 import com.wma.library.base.BaseFragment;
@@ -60,6 +58,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements T
         List<Fragment> mWeatherFragments = new ArrayList<>();
         mWeatherFragments.add(new WeatherFragment());
         mWeatherFragments.add(new FutureFragment());
+        mBinding.weatherPager.setPageTransformer(true,new CommonTransformer());
         mBinding.weatherPager.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), mWeatherFragments));
     }
 
@@ -70,6 +69,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements T
         List<Fragment> mConsFragments = new ArrayList<>();
         mConsFragments.add(new TodayConsFragment(this, ConsModule.TYPE_TODAY));
         mConsFragments.add(new TodayConsFragment(this, ConsModule.TYPE_TOMORROW));
+        mBinding.consPager.setPageTransformer(true,new CommonTransformer());
         mBinding.consPager.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), mConsFragments));
     }
 
