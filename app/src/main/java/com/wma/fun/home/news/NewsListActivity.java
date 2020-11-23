@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.tabs.TabLayout;
 import com.wma.fun.R;
 import com.wma.fun.databinding.ActivityNewsListBinding;
+import com.wma.fun.home.anim.CommonTransformer;
 import com.wma.library.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding> {
             mBinding.tabLayout.addTab(mBinding.tabLayout.newTab().setText(NewsModule.mName[i]));
         }
         mBinding.viewPager.setAdapter(new NewsPagerAdapter(getSupportFragmentManager(), mFragments));
+        mBinding.viewPager.setPageTransformer(true,new CommonTransformer());
+        mBinding.viewPager.setOffscreenPageLimit(5);
         mBinding.tabLayout.setupWithViewPager(mBinding.viewPager);
 
     }
