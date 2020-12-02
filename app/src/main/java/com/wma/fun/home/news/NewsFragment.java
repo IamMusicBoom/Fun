@@ -6,20 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.scwang.smart.refresh.header.BezierRadarHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
-import com.scwang.smart.refresh.layout.api.RefreshHeader;
 import com.wma.fun.R;
 import com.wma.fun.data.UserSP;
 import com.wma.fun.databinding.FragmentNewsBinding;
 import com.wma.fun.databinding.ViewNewsBinding;
-import com.wma.fun.home.HomeFragment;
-import com.wma.fun.home.anim.CommonTransformer;
-import com.wma.library.base.BaseFragmentPagerAdapter;
 import com.wma.library.base.BaseLoadFragment;
 import com.wma.library.base.BasePagerAdapter;
+import com.wma.library.base.BasePagerTransformer;
 import com.wma.library.base.BaseWebViewActivity;
 import com.wma.library.log.Logger;
 
@@ -106,7 +101,7 @@ public class NewsFragment extends BaseLoadFragment<NewsModule, FragmentNewsBindi
 
             }
             mAdapter = new BasePagerAdapter(mViewList);
-            mBinding.newsPager.setPageTransformer(true,new CommonTransformer());
+            mBinding.newsPager.setPageTransformer(true,new BasePagerTransformer());
             mBinding.newsPager.setAdapter(mAdapter);
         }
 

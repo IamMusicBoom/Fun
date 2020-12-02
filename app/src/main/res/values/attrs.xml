@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CountdownView">
+        <attr name="CTextSize" format="dimension"/>
+        <attr name="CTextColor" format="color"/>
+        <attr name="CCircleColor" format="color"/>
+    </declare-styleable>
+</resources>

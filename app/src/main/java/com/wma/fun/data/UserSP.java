@@ -30,7 +30,8 @@ public class UserSP {
     }
 
     public static String getUserCons() {
-        return sp.getString(USER_CONS_KEY, ConsUtils.J_X_Z);
+        String curConstellation = ConsUtils.getCurConstellation();
+        return sp.getString(USER_CONS_KEY, curConstellation);
     }
 
 
@@ -50,5 +51,50 @@ public class UserSP {
         return sp.getString(USER_FAVORITE_KEY, "top");
     }
     // ----------------------------------------------------------------------- 用户对新闻的喜好 end
+
+
+    // ----------------------------------------------------------------------- 用户Token start
+    public static String USER_TOKEN_KEY = "USER_TOKEN_KEY";
+
+    public static void putToken(String token) {
+        sp.edit().putString(USER_TOKEN_KEY, token).apply();
+    }
+
+    public static String getToken() {
+        return sp.getString(USER_TOKEN_KEY, "");
+    }
+    // ----------------------------------------------------------------------- 用户Token end
+
+
+
+
+    // ----------------------------------------------------------------------- 用户Token start
+    public static String USER_ACCOUNT_KEY = "USER_ACCOUNT_KEY";
+
+    public static void putAccount(String account) {
+        sp.edit().putString(USER_ACCOUNT_KEY, account).apply();
+    }
+
+    public static String getAccount() {
+        return sp.getString(USER_ACCOUNT_KEY, "");
+    }
+    // ----------------------------------------------------------------------- 用户Token end
+
+
+
+
+    // ----------------------------------------------------------------------- 用户Token start
+    public static String USER_PASSWORD_KEY = "USER_PASSWORD_KEY";
+
+    public static void putPassword(String password) {
+        sp.edit().putString(USER_PASSWORD_KEY, password).apply();
+    }
+
+    public static String getPassword() {
+        return sp.getString(USER_PASSWORD_KEY, "");
+    }
+    // ----------------------------------------------------------------------- 用户Token end
+
+
 
 }
