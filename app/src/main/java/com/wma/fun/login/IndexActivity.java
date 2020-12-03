@@ -35,7 +35,7 @@ import java.util.TimerTask;
  * on 2020/11/23 0023
  */
 public class IndexActivity extends BaseActivity<ActivityIndexBinding> {
-    private int mMaxTime = 4;
+    private int mMaxTime = 6;
     private int mCurTime = 0;
 
     @Override

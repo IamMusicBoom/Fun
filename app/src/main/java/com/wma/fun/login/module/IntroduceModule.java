@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.databinding.BindingAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.wma.library.base.BaseModule;
 import com.wma.library.base.BasePagerAdapter;
 import com.wma.library.base.BasePagerTransformer;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * create by wma
  * on 2020/12/1 0001
  */
-public class IntroduceModule {
+public class IntroduceModule extends BaseModule {
 
     private List<View> views;
 

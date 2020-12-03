@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-        <activity android:name=".login.LoginActivity"></activity>
+        <activity android:name=".login.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+        </activity>
         <activity android:name=".login.IntroduceActivity"
             android:theme="@style/FullScreen">
 

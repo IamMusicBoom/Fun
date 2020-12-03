@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="180dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            tools:context=".login.LoginActivity">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:theme="@style/MyEditText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@mipmap/icon_account"
+                    android:drawablePadding="10dp"
+                    android:hint="用户名" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyEditText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_account">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@mipmap/icon_password"
+                    android:drawablePadding="10dp"
+                    android:hint="密码"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.wma.library.widget.views.SubmitBtn
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:clickable="true"
+                android:onClick="onClick"
+                app:FailColor="@color/colorLoadBtnFail"
+                app:SuccessColor="@color/colorLoadBtnSuccess"
+                app:BackgroundColor="@color/colorLoadBtn"
+                app:Text="登录"
+                app:FailHint="登陆失败，重新登录"
+                app:SuccessHint="登录成功"
+                app:TextColor="@android:color/white"
+                app:TextSize="17sp"
+                app:layout_constraintEnd_toEndOf="@id/til_password"
+                app:layout_constraintStart_toStartOf="@id/til_password"
+                app:layout_constraintTop_toBottomOf="@id/til_password" />
+
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:onClick="onClick"
+                app:layout_constraintStart_toStartOf="@id/btn_login"
+                app:layout_constraintTop_toBottomOf="@id/btn_login"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@color/color_go_login_btn"
+                android:text="注册" />
+
+
+            <TextView
+                android:id="@+id/tv_do_not_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:textSize="17sp"
+                android:onClick="onClick"
+                app:layout_constraintEnd_toEndOf="@id/btn_login"
+                app:layout_constraintTop_toBottomOf="@id/btn_login"
+                android:textColor="@color/color_go_login_btn"
+                android:background="?attr/selectableItemBackground"
+                android:text="不想登录..." />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
