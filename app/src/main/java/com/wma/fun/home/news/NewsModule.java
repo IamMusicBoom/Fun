@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.cardview.widget.CardView;
 import androidx.databinding.BindingAdapter;
@@ -13,12 +12,12 @@ import androidx.databinding.BindingAdapter;
 import com.bumptech.glide.Glide;
 import com.wma.fun.R;
 import com.wma.library.base.BaseModule;
-import com.wma.library.log.Logger;
+import com.wma.library.utils.http.HttpCallbackListener;
+import com.wma.library.utils.http.Request;
 
-import org.xutils.common.Callback;
+import org.xutils.http.HttpMethod;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -33,7 +32,7 @@ public class NewsModule extends BaseModule {
     public static String[] mValue = {"top", "shehui", "guonei", "guoji", "yule", "tiyu", "junshi", "keji", "caijing", "shishang"};
 
 
-    private final String NEWS_URL = "http://v.juhe.cn/toutiao/index";
+    private final String URL_NEWS = "http://v.juhe.cn/toutiao/index";
     /**
      * uniquekey : 5caf434be0c9165ce432dca9e74aa44a
      * title : 她将弟弟“硬拉”进娱乐圈，如今弟弟世人皆知，姐姐却不温不火
@@ -56,11 +55,12 @@ public class NewsModule extends BaseModule {
     private String thumbnail_pic_s02;
     private String thumbnail_pic_s03;
 
-    public void loadNews(Callback.CommonCallback callback, String type) {
+    public void loadNews(HttpCallbackListener callback, String type) {
         Map<String, String> params = new HashMap<>();
         params.put("type", type);
         params.put("key", "ddf058f205abc13f4a0bd68661b41f55");
-        mCancelable = mHttpUtils.get(NEWS_URL, params, callback);
+        Request request = new Request(HttpMethod.GET, URL_NEWS, params, Request.FROM_JU_HE);
+        mHttpUtils.request(request, callback);
     }
 
 
@@ -149,7 +149,7 @@ public class NewsModule extends BaseModule {
             imageView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             layout.addView(imageView);
-            Glide.with(layout.getContext()).load(imgPath).placeholder(R.mipmap.ic_launcher).into(imageView);
+            Glide.with(layout.getContext()).load(imgPath).placeholder(com.wma.library.R.mipmap.ic_loading).error(com.wma.library.R.mipmap.ic_image_error).into(imageView);
         }
     }
 }

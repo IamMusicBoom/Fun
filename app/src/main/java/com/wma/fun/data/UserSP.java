@@ -2,8 +2,11 @@ package com.wma.fun.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.wma.fun.MainApplication;
+import com.wma.fun.login.module.User;
 import com.wma.library.utils.ConsUtils;
 
 /**
@@ -38,8 +41,6 @@ public class UserSP {
     // ----------------------------------------------------------------------- 用户星座 end
 
 
-
-
     // ----------------------------------------------------------------------- 用户对新闻的喜好 start
     static final String USER_FAVORITE_KEY = "USER_FAVORITE_KEY";
 
@@ -66,35 +67,23 @@ public class UserSP {
     // ----------------------------------------------------------------------- 用户Token end
 
 
+    // ----------------------------------------------------------------------- 用户信息 start
+    public static String USER_KEY = "USER_KEY";
 
-
-    // ----------------------------------------------------------------------- 用户Token start
-    public static String USER_ACCOUNT_KEY = "USER_ACCOUNT_KEY";
-
-    public static void putAccount(String account) {
-        sp.edit().putString(USER_ACCOUNT_KEY, account).apply();
+    public static void putUser(User user) {
+        String userStr = new Gson().toJson(user);
+        sp.edit().putString(USER_KEY, userStr).apply();
     }
 
-    public static String getAccount() {
-        return sp.getString(USER_ACCOUNT_KEY, "");
+    public static User getUser() {
+        String userStr = sp.getString(USER_KEY, "");
+        User user = new Gson().fromJson(userStr, User.class);
+        return user;
     }
-    // ----------------------------------------------------------------------- 用户Token end
+    // ----------------------------------------------------------------------- 用户信息 end
 
-
-
-
-    // ----------------------------------------------------------------------- 用户Token start
-    public static String USER_PASSWORD_KEY = "USER_PASSWORD_KEY";
-
-    public static void putPassword(String password) {
-        sp.edit().putString(USER_PASSWORD_KEY, password).apply();
+    public static boolean isLogin() {
+        return !TextUtils.isEmpty(getToken());
     }
-
-    public static String getPassword() {
-        return sp.getString(USER_PASSWORD_KEY, "");
-    }
-    // ----------------------------------------------------------------------- 用户Token end
-
-
 
 }

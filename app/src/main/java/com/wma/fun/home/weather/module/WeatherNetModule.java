@@ -1,8 +1,10 @@
 package com.wma.fun.home.weather.module;
 
 import com.wma.library.base.BaseModule;
+import com.wma.library.utils.http.HttpCallbackListener;
+import com.wma.library.utils.http.Request;
 
-import org.xutils.common.Callback;
+import org.xutils.http.HttpMethod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,21 +15,23 @@ import java.util.Map;
  */
 public class WeatherNetModule extends BaseModule {
 
-    String WIDS_URL = "http://apis.juhe.cn/simpleWeather/wids";
+    String URL_WIDS = "http://apis.juhe.cn/simpleWeather/wids";
 
-    String WEATHER_URL = "http://apis.juhe.cn/simpleWeather/query";
+    String URL_WEATHER = "http://apis.juhe.cn/simpleWeather/query";
 
-    public void loadWids(Callback.CommonCallback callback){
+    public void loadWids(HttpCallbackListener callback) {
         Map<String, String> params = new HashMap<>();
         params.put("key", "795896001e17442acb2ca48ae1ea3167");
-        mCancelable = mHttpUtils.get(WIDS_URL, params, callback);
+        Request request = new Request(HttpMethod.GET, URL_WIDS, params, Request.FROM_JU_HE);
+        mHttpUtils.request(request, callback);
     }
 
 
-    public void loadWeather(Callback.CommonCallback callback, String city){
+    public void loadWeather(HttpCallbackListener callback, String city) {
         Map<String, String> params = new HashMap<>();
         params.put("city", city);
         params.put("key", "795896001e17442acb2ca48ae1ea3167");
-        mCancelable = mHttpUtils.get(WEATHER_URL, params, callback);
+        Request request = new Request(HttpMethod.GET, URL_WEATHER, params, Request.FROM_JU_HE);
+        mHttpUtils.request(request, callback);
     }
 }

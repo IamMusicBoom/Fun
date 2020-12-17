@@ -13,12 +13,6 @@
     android:layout_height="match_parent"
     >
 
-   <com.google.android.material.navigation.NavigationView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_gravity="left"
-       app:headerLayout="@layout/nva_header"
-       app:menu="@menu/drawer_menu"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,6 +43,12 @@
 
 
     </LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>

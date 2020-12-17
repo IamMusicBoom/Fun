@@ -112,9 +112,8 @@ public class IntroduceActivity extends BaseActivity<ActivityIntroduceBinding> im
     @Override
     public void onClick(View v) {
         if(v == mBinding.goLoginTv){
-            Intent intent = new Intent(IntroduceActivity.this, LoginActivity.class);
+            LoginActivity.goLogin(IntroduceActivity.this);
             ConfigSP.putFirstUse(false);
-            startActivity(intent);
             onBackPressed();
         }
     }

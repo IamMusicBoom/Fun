@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
+<!--        <item-->
+<!--            android:id="@+id/nav_favor"-->
+<!--            android:icon="@mipmap/icon_favor"-->
+<!--            android:title="我的收藏" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_balance"-->
+<!--            android:icon="@mipmap/icon_balance"-->
+<!--            android:title="我的钱包" />-->
         <item
-            android:id="@+id/nav_favor"
-            android:icon="@mipmap/icon_favor"
-            android:title="我的收藏" />
-        <item
-            android:id="@+id/nav_balance"
-            android:icon="@mipmap/icon_balance"
-            android:title="我的钱包" />
-        <item
-            android:id="@+id/nav_contract"
+            android:id="@+id/nav_menu_luck_money"
             android:icon="@mipmap/icon_contract"
-            android:title="朋友圈" />
+            android:title="自动抢红包" />
+<!--        <item-->
+<!--            android:id="@+id/nav_friends"-->
+<!--            android:icon="@mipmap/icon_friends"-->
+<!--            android:title="联系人" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_message"-->
+<!--            android:icon="@mipmap/icon_message"-->
+<!--            android:title="我的消息" />-->
         <item
-            android:id="@+id/nav_friends"
-            android:icon="@mipmap/icon_friends"
-            android:title="联系人" />
-        <item
-            android:id="@+id/nav_message"
-            android:icon="@mipmap/icon_message"
-            android:title="我的消息" />
-        <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_menu_settings"
             android:icon="@mipmap/icon_settings"
             android:title="我的设置" />
     </group>

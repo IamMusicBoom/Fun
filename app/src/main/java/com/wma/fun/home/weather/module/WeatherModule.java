@@ -232,6 +232,6 @@ public class WeatherModule extends WeatherNetModule {
         sb.append(weatherInfo);
         sb.append(".png");
         String assetsFilePath = new FileUtils(img.getContext()).getAssetsFilePath(sb.toString());
-        Glide.with(img.getContext()).load(assetsFilePath).placeholder(R.mipmap.ic_launcher).into(img);
+        Glide.with(img.getContext()).load(assetsFilePath).placeholder(com.wma.library.R.mipmap.ic_loading).error(com.wma.library.R.mipmap.ic_image_error).into(img);
     }
 }

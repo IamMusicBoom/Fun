@@ -69,7 +69,7 @@ public class NewsFragment extends BaseLoadFragment<NewsModule, FragmentNewsBindi
     @Override
     public void handleBySuccess(List<NewsModule> result) {
         super.handleBySuccess(result);
-        Logger.d(TAG, "handleBySuccess: " + result.size());
+        Logger.d(TAG, "success: " + result.size());
         if (result != null && result.size() >= 3) {
             for (int i = 0; i < 4; i++) {
                 if(i<3){

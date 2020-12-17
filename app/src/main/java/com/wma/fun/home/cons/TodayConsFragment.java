@@ -1,11 +1,6 @@
 package com.wma.fun.home.cons;
 
-import android.app.AlertDialog;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.ProgressBar;
-
-import androidx.annotation.Nullable;
 
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.wma.fun.R;
@@ -13,15 +8,8 @@ import com.wma.fun.data.UserSP;
 import com.wma.fun.databinding.FragmentTodayConsBinding;
 import com.wma.fun.home.cons.module.ConsModule;
 import com.wma.fun.home.cons.module.TodayModule;
-import com.wma.library.base.BaseFragment;
 import com.wma.library.base.BaseLazyLoadFragment;
-import com.wma.library.log.Logger;
 import com.wma.library.utils.ConsUtils;
-import com.wma.library.utils.TimeUtils;
-
-import org.xutils.common.Callback;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * create by wma

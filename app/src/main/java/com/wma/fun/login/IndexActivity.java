@@ -35,7 +35,7 @@ import java.util.TimerTask;
  * on 2020/11/23 0023
  */
 public class IndexActivity extends BaseActivity<ActivityIndexBinding> {
-    private int mMaxTime = 6;
+    private int mMaxTime = 4;
     private int mCurTime = 0;
 
     @Override
@@ -144,14 +144,15 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding> {
         Intent intent;
         if (firstUse) {
             intent = new Intent(IndexActivity.this, IntroduceActivity.class);
+            startActivity(intent);
         } else {
             String token = UserSP.getToken();
             if (TextUtils.isEmpty(token)) {
-                intent = new Intent(IndexActivity.this, LoginActivity.class);
+                LoginActivity.goLogin(IndexActivity.this);
             } else {
                 intent = new Intent(IndexActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         }
-        startActivity(intent);
     }
 }

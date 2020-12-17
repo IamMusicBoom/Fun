@@ -49,6 +49,9 @@ public class WeatherFragment extends BaseLazyLoadFragment<WeatherModule, Fragmen
     }
 
 
+
+
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
