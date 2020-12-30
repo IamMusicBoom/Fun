@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
@@ -21,7 +22,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.wma.fun.MainApplication;
 import com.wma.fun.R;
+import com.wma.fun.auto.FunctionType;
+import com.wma.fun.auto.NoticeDialog;
 import com.wma.fun.data.UserSP;
 import com.wma.fun.databinding.ActivityMainBinding;
 import com.wma.fun.home.HomeFragment;
@@ -32,6 +36,7 @@ import com.wma.fun.social.SocialFragment;
 import com.wma.fun.task.TaskFragment;
 import com.wma.library.base.BaseActivity;
 import com.wma.library.base.BasePagerTransformer;
+import com.wma.library.utils.gilde.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +45,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
     private MainPagerAdapter mAdapter;
     private List<Fragment> mFragments;
 
+    private final int REQUEST_CODE_UPDATE_USER_INFO = 250;
+
     ImageView mHeadImg;
+    ImageView mBgWall;
     TextView mUserNameTv;
 
     @Override
@@ -96,7 +104,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         });
         View headerView = mBinding.navigationView.inflateHeaderView(R.layout.nva_header);
         if (UserSP.isLogin()) {
+            User user = UserSP.getUser();
             mHeadImg = headerView.findViewById(R.id.img_head);
+            mBgWall = headerView.findViewById(R.id.img_bg_wall);
+            GlideUtils.getInstance().loadBlur(getApplicationContext(), user.getBgWall(), mBgWall, 20);
+            GlideUtils.getInstance().loadCircle(getApplicationContext(), user.getHeadImage(), mHeadImg);
             mHeadImg.setOnClickListener(this);
         }
 
@@ -114,8 +126,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.nav_menu_luck_money) {
-
+                    String message = getString(R.string.rush_money_message);
+                    NoticeDialog dialog = NoticeDialog.newInstanse(getString(R.string.notice_title), message, FunctionType.RUSH_MONEY);
+                    dialog.show(getSupportFragmentManager(), NoticeDialog.TAG);
                 } else if (menuItem.getItemId() == R.id.nav_menu_settings) {
+
+                } else if (menuItem.getItemId() == R.id.nav_menu_exit) {
+                    UserSP.putToken("");
+                    MainApplication.getApplication().exit();
                 }
                 mBinding.drawerLayout.closeDrawers();
                 return true;
@@ -141,16 +159,25 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         if (v == mUserNameTv) {
             if (UserSP.isLogin()) {
                 Intent intent = new Intent(MainActivity.this, UpdateUserInfoActivity.class);
-//                Pair<View, String> pHead = Pair.create((View)mHeadImg, "transitionHead");
-//                Pair<View, String> pName = Pair.create((View)mUserNameTv,"transitionName");
-//                Bundle compat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, pHead, pName).toBundle();
-                Bundle compat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,mUserNameTv,"transitionName").toBundle();
-                startActivity(intent, compat);
+                Bundle compat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, mUserNameTv, "transitionName").toBundle();
+                startActivityForResult(intent, REQUEST_CODE_UPDATE_USER_INFO, compat);
             } else {
                 LoginActivity.goLogin(MainActivity.this);
             }
         } else if (v == mHeadImg) {
             // TODO 查看头像大图
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == REQUEST_CODE_UPDATE_USER_INFO){
+                User user = UserSP.getUser();
+                GlideUtils.getInstance().loadBlur(getApplicationContext(), user.getBgWall(), mBgWall, 20);
+                GlideUtils.getInstance().loadCircle(getApplicationContext(), user.getHeadImage(), mHeadImg);
+            }
         }
     }
 }

@@ -16,7 +16,6 @@ import android.view.animation.TranslateAnimation;
 
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
 import com.wma.fun.R;
 import com.wma.fun.data.ConfigSP;
 import com.wma.fun.data.UserSP;
@@ -29,6 +28,8 @@ import com.wma.library.utils.TimeUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * create by wma

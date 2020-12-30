@@ -12,6 +12,11 @@
 
     <string name="cons_pair">速配</string>
     <string name="load_fail">加载失败</string>
+    <string name="accessibility_desc">辅助功能描述</string>
+    <string name="notice_title">温馨提示</string>
+    <string name="rush_money_message">我们需要您授予权限，以便于我们帮你自动抢红包，请点击确定后在界面中找到本应用名字，并打开辅助功能</string>
+    <string name="auto_get_power">我们需要您授予权限，以便于我们帮你自动收取能量，请点击确定后在界面中找到本应用名字，并打开辅助功能</string>
+    <string name="auto_gesture">我们需要您授予权限，以便于我们帮你自动点击，请点击确定后在界面中找到本应用名字，并打开辅助功能</string>
 
 
 </resources>

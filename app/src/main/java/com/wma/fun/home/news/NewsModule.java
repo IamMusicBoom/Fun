@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.BindingAdapter;
 
-import com.bumptech.glide.Glide;
-import com.wma.fun.R;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.wma.library.base.BaseModule;
+import com.wma.library.utils.gilde.GlideUtils;
 import com.wma.library.utils.http.HttpCallbackListener;
 import com.wma.library.utils.http.Request;
 
@@ -138,6 +138,8 @@ public class NewsModule extends BaseModule {
 
     @BindingAdapter("showImage")
     public static void showImage(CardView layout, String imgPath) {
+        DrawableCrossFadeFactory drawableCrossFadeFactory = new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
+
         if (layout.getChildCount() > 0) {
             layout.removeAllViews();
         }
@@ -149,7 +151,7 @@ public class NewsModule extends BaseModule {
             imageView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             layout.addView(imageView);
-            Glide.with(layout.getContext()).load(imgPath).placeholder(com.wma.library.R.mipmap.ic_loading).error(com.wma.library.R.mipmap.ic_image_error).into(imageView);
+            GlideUtils.getInstance().loadImage(layout.getContext(),imgPath,imageView);
         }
     }
 }

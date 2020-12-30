@@ -7,6 +7,13 @@
     android:background="@color/colorAccent">
 
     <ImageView
+        android:id="@+id/img_bg_wall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="onClick"
+        android:scaleType="fitXY" />
+
+    <ImageView
         android:id="@+id/img_head"
         android:layout_width="100dp"
         android:layout_height="100dp"

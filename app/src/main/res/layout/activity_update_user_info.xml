@@ -25,162 +25,187 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="50dp">
+                android:orientation="vertical">
 
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/img_head"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:transitionName="transitionHead"
-                    app:placeholderImage="@mipmap/icon_head" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_user_name"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:theme="@style/MyEditText">
+                    android:layout_height="280dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_user_name"
+                    <ImageView
+                        android:id="@+id/img_bg_wall"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@mipmap/icon_account"
-                        android:drawablePadding="10dp"
-                        android:transitionName="transitionName"
-                        android:hint="用户名"
-                        android:text="@={user.userName}" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="match_parent"
+                        android:onClick="onClick"
+                        android:scaleType="fitXY" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_user_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:theme="@style/MyEditText">
+                    <ImageView
+                        android:id="@+id/img_head"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:onClick="onClick"
+                        android:src="@mipmap/icon_head"
+                        android:transitionName="transitionHead"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_user_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@mipmap/icon_phone"
-                        android:drawablePadding="10dp"
-                        android:hint="用户手机"
-                        android:text="@={user.userPhone}" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_user_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:theme="@style/MyEditText">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_user_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@mipmap/icon_email"
-                        android:drawablePadding="10dp"
-                        android:hint="用户邮箱"
-                        android:text="@={user.userEmail}" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_birthday" />
-
-                    <TextView
-                        android:id="@+id/tv_birthday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:hint="生日"
-                        android:text='@{user.birthday==null ? "" : TimeUtils.getStringDateToDay(user.birthday)}'
-                        android:textSize="17sp" />
-
-                    <ImageView
-                        android:id="@+id/img_birthday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackground"
-                        android:padding="10dp"
-                        android:src="@mipmap/ic_go" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp" />
-
-                <RadioGroup
-                    android:id="@+id/rg_sex"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    app:setSexBtn="@{user.sex}"
-                    android:padding="5dp">
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/MyEditText">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_user_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@mipmap/icon_account"
+                            android:drawablePadding="10dp"
+                            android:hint="用户名"
+                            android:text="@={user.userName}"
+                            android:transitionName="transitionName" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_user_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/MyEditText">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_user_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@mipmap/icon_phone"
+                            android:drawablePadding="10dp"
+                            android:hint="用户手机"
+                            android:text="@={user.userPhone}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_user_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/MyEditText">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_user_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@mipmap/icon_email"
+                            android:drawablePadding="10dp"
+                            android:hint="用户邮箱"
+                            android:text="@={user.userEmail}" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
-                        <TextView
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@mipmap/icon_sex"
-                            android:drawablePadding="10dp"
-                            android:gravity="center"
-                            android:text='@{user.getSexStr(user.sex)}'
-                            android:hint="性别"
+                            android:onClick="onClick"
+                            android:src="@mipmap/icon_birthday" />
+
+                        <TextView
+                            android:id="@+id/tv_birthday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="生日"
+                            android:text='@{user.birthday==null ? "" : TimeUtils.getStringDateToDay(user.birthday)}'
                             android:textSize="17sp" />
+
+                        <ImageView
+                            android:id="@+id/img_birthday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:onClick="onClick"
+                            android:padding="10dp"
+                            android:src="@mipmap/ic_go" />
 
                     </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/rb_male"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:button="@drawable/select_bg_male"
-                        android:padding="5dp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp" />
 
-                    <RadioButton
-                        android:id="@+id/rb_female"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/rg_sex"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:button="@drawable/select_bg_female"
-                        android:padding="5dp" />
-                </RadioGroup>
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        app:setSexBtn="@{user.sex}">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@mipmap/icon_sex"
+                                android:drawablePadding="10dp"
+                                android:gravity="center"
+                                android:hint="性别"
+                                android:text='@{user.getSexStr(user.sex)}'
+                                android:textSize="17sp" />
+
+                        </LinearLayout>
+
+                        <RadioButton
+                            android:id="@+id/rb_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/select_bg_male"
+                            android:padding="5dp" />
+
+                        <RadioButton
+                            android:id="@+id/rb_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/select_bg_female"
+                            android:padding="5dp" />
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp" />
+                </LinearLayout>
             </LinearLayout>
-
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
     </ScrollView>
 </layout>

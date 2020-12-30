@@ -27,3 +27,8 @@
     -keep class com.loc.**{*;}
     -keep class com.autonavi.aps.amapapi.model.**{*;}
 #  高德定位  结束
+
+#SweetAlertDialog
+-keep class cn.pedant.SweetAlert.Rotate3dAnimation {
+  public <init>(...);
+}

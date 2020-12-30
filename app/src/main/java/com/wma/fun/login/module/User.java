@@ -1,25 +1,28 @@
 package com.wma.fun.login.module;
 
 
+import android.text.TextUtils;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
 
-import com.wma.fun.BR;
 import com.wma.fun.R;
 import com.wma.library.base.BaseModule;
 import com.wma.library.utils.http.HttpCallbackListener;
 import com.wma.library.utils.http.Request;
 
+import org.xutils.db.annotation.Column;
+import org.xutils.db.annotation.Table;
 import org.xutils.http.HttpMethod;
 
-import java.text.SimpleDateFormat;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.List;
 import java.util.Map;
 
+@Table(name = "user")
 public class User extends BaseModule {
 
     private final String URL_REGISTER = HOST + "/user/register";
@@ -32,7 +35,7 @@ public class User extends BaseModule {
 
     private final String URL_GET_USER_BY_ID = HOST + "/user/getUserById";
 
-
+    @Column(name = "id")
     private String id;
 // ----------------------------------------------------- 账户信息开始;
     /**
@@ -85,7 +88,7 @@ public class User extends BaseModule {
     private Integer sex;
 
     /**
-     * 国家
+     * 生日
      */
     private Long birthday;
 
@@ -281,6 +284,15 @@ public class User extends BaseModule {
         params.put("city", user.getCity());
         params.put("area", user.getArea());
         Request request = new Request(HttpMethod.POST, URL_UPDATE_USER, params, Request.FROM_MYSELF);
+
+        List<File> files = new ArrayList<>();
+        File bgWallFile = new File(user.getBgWall());
+        files.add(bgWallFile);
+        params.put("bgWall", bgWallFile.getName());
+        File headImgFile = new File(user.getHeadImage());
+        files.add(headImgFile);
+        params.put("headImage", headImgFile.getName());
+        request.setFiles(files);
         mHttpUtils.request(request, callback);
     }
 
@@ -301,12 +313,12 @@ public class User extends BaseModule {
     @BindingAdapter("setSexBtn")
     public static void setSexBtn(RadioGroup group, Integer sex) {
         if (sex == null || "null".equalsIgnoreCase(String.valueOf(sex))) {
-            return ;
+            return;
         }
-        if(sex == 0){
+        if (sex == 0) {
             group.check(R.id.rb_male);
         }
-        if(sex == 1){
+        if (sex == 1) {
             group.check(R.id.rb_female);
         }
     }

@@ -4,15 +4,11 @@ import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
-import com.bumptech.glide.Glide;
-import com.wma.fun.R;
 import com.wma.fun.home.weather.TemperatureView;
 import com.wma.fun.home.weather.WindView;
-import com.wma.library.base.BaseModule;
-import com.wma.library.log.Logger;
 import com.wma.library.utils.FileUtils;
+import com.wma.library.utils.gilde.GlideUtils;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -232,6 +228,6 @@ public class WeatherModule extends WeatherNetModule {
         sb.append(weatherInfo);
         sb.append(".png");
         String assetsFilePath = new FileUtils(img.getContext()).getAssetsFilePath(sb.toString());
-        Glide.with(img.getContext()).load(assetsFilePath).placeholder(com.wma.library.R.mipmap.ic_loading).error(com.wma.library.R.mipmap.ic_image_error).into(img);
+        GlideUtils.getInstance().loadImage(img.getContext(),assetsFilePath,img);
     }
 }
