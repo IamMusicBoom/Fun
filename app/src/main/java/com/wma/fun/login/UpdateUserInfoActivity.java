@@ -2,6 +2,7 @@ package com.wma.fun.login;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -15,7 +16,6 @@ import com.wma.fun.data.UserSP;
 import com.wma.fun.databinding.ActivityUpdateUserInfoBinding;
 import com.wma.fun.login.module.User;
 import com.wma.library.base.BaseLoadActivity;
-import com.wma.library.base.BaseModule;
 import com.wma.library.log.Logger;
 import com.wma.library.select.FileItem;
 import com.wma.library.select.FileType;
@@ -34,8 +34,8 @@ import java.util.Calendar;
  */
 public class UpdateUserInfoActivity extends BaseLoadActivity<User, ActivityUpdateUserInfoBinding> implements View.OnClickListener {
     private String mEmail, mPhone;
-    private final int REQUEST_CODE_HEAD_IMG = SelectDialog.REQUEST_CODE + 10;
-    private final int REQUEST_CODE_BG_WALL_IMG = SelectDialog.REQUEST_CODE + 20;
+    private final int REQUEST_CODE_HEAD_IMG = SelectDialog.REQUEST_SELECT_CODE + 10;
+    private final int REQUEST_CODE_BG_WALL_IMG = SelectDialog.REQUEST_SELECT_CODE + 20;
 
 
     @Override
@@ -189,9 +189,13 @@ public class UpdateUserInfoActivity extends BaseLoadActivity<User, ActivityUpdat
                 if (list != null && list.size() == 1) {
                     FileItem fileItem = list.get(0);
                     GlideUtils.getInstance().loadBlur(getApplicationContext(), fileItem.getFilePath(), mBinding.imgBgWall, 20);
-//                    GlideUtils.getInstance().loadMutilTransformatiom(getApplicationContext(),fileItem.getFilePath(),mBinding.imgBgWall,new BlurTransformation(20, 1), new RoundedCorners(10));
                     mBinding.getUser().setBgWall(fileItem.getFilePath());
                 }
+            } else if (requestCode == SelectDialog.REQUEST_CAPTURE_CODE && data != null) {
+                Bundle extras = data.getExtras();
+                Bitmap bitmap = (Bitmap) extras.get("data");
+                int leng = bitmap.getByteCount();
+                Logger.d(TAG, "onActivityResult: leng = " + leng);
             }
         }
     }
