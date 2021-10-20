@@ -4,7 +4,6 @@
     package="com.wma.fun">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 用于访问GPS定位 -->
@@ -28,17 +27,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-        <activity android:name=".login.LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize">
-        </activity>
-        <activity android:name=".login.IntroduceActivity"
-            android:theme="@style/FullScreen">
-
-        </activity>
-
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="02ace22ad715c54f9b103edb3d94865d" />
 
         <service android:name=".main.MainService">
             <intent-filter>
@@ -47,21 +35,13 @@
         </service>
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".main.MainActivity" />
-        <activity android:name=".home.news.NewsDetailActivity" />
-        <activity android:name=".home.news.NewsListActivity" />
-        <activity
-            android:name=".login.IndexActivity"
-            android:theme="@style/FullScreen">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".login.UpdateUserInfoActivity"/>
-
         <service
             android:name=".auto.AutoService"
             android:exported="true"
